@@ -1,0 +1,13 @@
+{
+  "name": "hermes-studio",
+  "label": "Studio",
+  "icon": "Sparkles",
+  "version": "0.1.0",
+  "tab": {
+    "path": "/studio",
+    "position": "after:skills"
+  },
+  "entry": "dist/index.js",
+  "styles": ["dist/style.css"],
+  "description": "Creative canvas for Hermes — live multi-modal output rendering."
+}

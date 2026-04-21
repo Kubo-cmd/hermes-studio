@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermes-studio"
+version = "0.1.0"
+description = "A creative surface for Hermes Agent — canvas, timeline, and multi-modal tools."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Kubo100x" }]
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.110",
+]
+
+[project.optional-dependencies]
+image = ["fal-client>=0.4"]
+all = ["fal-client>=0.4"]
+dev = [
+  "pytest>=8",
+  "httpx>=0.27",
+]
+
+[project.entry-points."hermes_agent.plugins"]
+hermes-studio = "hermes_studio"
+
+[tool.setuptools.packages.find]
+include = ["hermes_studio*"]
+
+[tool.setuptools.package-data]
+hermes_studio = ["*.yaml"]

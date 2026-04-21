@@ -1,0 +1,42 @@
+name: hermes-studio
+version: 0.1.0
+description: >
+  A creative surface for Hermes Agent. Eight archetype components that give
+  Hermes a visual canvas, secret redaction, session-scoped memory, subagent
+  watchdogs, and multi-modal output rendering.
+author: Kubo100x
+license: MIT
+
+provides_tools:
+  - studio_render_image
+  - studio_render_3d
+  - studio_render_video
+  - studio_render_audio
+  - studio_timeline_fork
+
+provides_hooks:
+  - pre_llm_call
+  - post_tool_call
+  - on_session_start
+  - on_session_end
+
+# FastAPI routes registered at /api/plugins/hermes-studio/*
+api: hermes_studio.api:router
+
+# Dashboard tab config
+dashboard:
+  manifest: dashboard/manifest.json
+
+requires_env:
+  - name: STUDIO_MEDIA_DIR
+    description: Where rendered media is written. Defaults to ~/.hermes/studio/media.
+    secret: false
+  # Optional — only required if the bundled creator archetypes are enabled.
+  - name: FAL_KEY
+    description: FAL.ai key for image generation via Flux. Optional.
+    url: https://fal.ai/
+    secret: true
+  - name: TRIPO3D_API_KEY
+    description: Tripo3D key for text-to-3D. Optional.
+    url: https://platform.tripo3d.ai/
+    secret: true
